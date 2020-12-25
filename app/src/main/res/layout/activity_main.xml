@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineRSRQ" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="SNR"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toTopOf="@+id/progressSNR"
+            app:layout_constraintEnd_toEndOf="@+id/progressSNR"
+            app:layout_constraintStart_toStartOf="@+id/progressSNR" />
+
+        <ProgressBar
+            android:id="@+id/progressSNR"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:max="30"
+            android:progress="10"
+            android:progressDrawable="@drawable/custom_progress_snr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/progressRSRQ"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16000003" />
+
+        <TextView
+            android:id="@+id/txt_SNR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-00.0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressSNR"
+            app:layout_constraintEnd_toEndOf="@+id/progressSNR"
+            app:layout_constraintStart_toStartOf="@+id/progressSNR"
+            app:layout_constraintTop_toTopOf="@+id/progressRSRP"
+            app:layout_constraintVertical_bias="0.55" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="RSRQ"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toTopOf="@+id/progressRSRQ"
+            app:layout_constraintEnd_toEndOf="@+id/progressRSRQ"
+            app:layout_constraintStart_toStartOf="@+id/progressRSRQ" />
+
+        <TextView
+            android:id="@+id/txt_RSRP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:text="-00.0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressRSRP"
+            app:layout_constraintEnd_toEndOf="@+id/progressRSRP"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="@+id/progressRSRP"
+            app:layout_constraintTop_toTopOf="@+id/progressRSRP"
+            app:layout_constraintVertical_bias="0.529" />
+
+        <ProgressBar
+            android:id="@+id/progressRSRQ"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="8dp"
+            android:max="30"
+            android:progress="3"
+            android:progressDrawable="@drawable/custom_progress_rsrq"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/progressSNR"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/progressRSRP"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16000003" />
+
+        <ProgressBar
+            android:id="@+id/progressRSRP"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="4dp"
+            android:max="140"
+            android:progress="50"
+            android:progressDrawable="@drawable/custom_progress_rsrp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/progressRSRQ"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16000003" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="RSRP"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toTopOf="@+id/progressRSRP"
+            app:layout_constraintEnd_toEndOf="@+id/progressRSRP"
+            app:layout_constraintStart_toStartOf="@+id/progressRSRP" />
+
+        <TextView
+            android:id="@+id/txt_RSRQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-00.0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressRSRQ"
+            app:layout_constraintEnd_toEndOf="@+id/progressRSRQ"
+            app:layout_constraintStart_toStartOf="@+id/progressRSRQ"
+            app:layout_constraintTop_toTopOf="@+id/progressRSRQ" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineRSRP"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressRSRQ"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineRSRQ"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineRSRP"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineSNR"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineRSRP" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
