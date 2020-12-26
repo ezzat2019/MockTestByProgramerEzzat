@@ -1,7 +1,9 @@
 package com.example.mocktestbyprogramerezzat.ui.main;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mocktestbyprogramerezzat.R;
 import com.example.mocktestbyprogramerezzat.data.model.RandomTestModel;
 import com.example.mocktestbyprogramerezzat.ui.main.viewmodel.MainViewModel;
+import com.example.mocktestbyprogramerezzat.utils.helper.Helper;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -20,6 +23,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> yRSRQ;
     private ArrayList<Entry> xSNR;
     private ArrayList<String> ySNR;
+    private String legendile;
 
 
     @Override
@@ -50,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadLegendFile();
         init();
         observeDataromApi();
 
@@ -57,6 +66,189 @@ public class MainActivity extends AppCompatActivity {
         buildRSRQ();
         buildSNR();
 
+
+    }
+
+    private void checkColorRSRP(double result) throws JSONException {
+
+        try {
+            JSONObject obj = new JSONObject(legendile);
+            JSONArray RSRP = obj.getJSONArray("RSRP");
+
+
+            if (result >= -60) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(6);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 1 " + color);
+
+            } else if (result < -60 && result > -70) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(5);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 2 " + color);
+
+            } else if (result < -70 && result > -80) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(4);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 3 " + color);
+
+            } else if (result < -80 && result > -90) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(3);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 4 " + color);
+
+            } else if (result < -90 && result > -100) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(2);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 5 " + color);
+
+            } else if (result < -100 && result > -110) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(1);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 6 " + color);
+
+            } else if (result >= -110) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(0);
+                String color = jsonObject.getString("Color");
+                updateRSRP(result, color);
+                Log.d("vvvvvvvvv", "checkColorRSRP: 7 " + color);
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkColorSNR(double result) throws JSONException {
+
+        try {
+            JSONObject obj = new JSONObject(legendile);
+            JSONArray RSRP = obj.getJSONArray("SINR");
+
+
+            if (result >= 30) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(6);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result < 30 && result > 25) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(5);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result < 25 && result > 20) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(4);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result < 20 && result > 15) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(3);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result < 15 && result > 10) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(2);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result < 10 && result > 5) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(1);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            } else if (result >= 0) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(0);
+                String color = jsonObject.getString("Color");
+                updateSIN(result, color);
+
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkColorRSRQ(double result) throws JSONException {
+
+        try {
+            JSONObject obj = new JSONObject(legendile);
+            JSONArray RSRP = obj.getJSONArray("RSRQ");
+
+
+            if (result >= -3) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(5);
+                String color = jsonObject.getString("Color");
+                updateRSRQ(result, color);
+
+
+            } else if (result < -3 && result > -9) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(4);
+                String color = jsonObject.getString("Color");
+                updateRSRQ(result, color);
+
+
+            } else if (result < -9 && result > -14) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(2);
+                String color = jsonObject.getString("Color");
+                updateRSRQ(result, color);
+
+
+            } else if (result < -14 && result > -19.5) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(1);
+                String color = jsonObject.getString("Color");
+                updateRSRQ(result, color);
+
+
+            } else if (result >= -19.5) {
+                JSONObject jsonObject = (JSONObject) RSRP.get(0);
+                String color = jsonObject.getString("Color");
+                updateRSRQ(result, color);
+
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateRSRP(double result, String color) {
+        progressRSRP.setProgressTintList(ColorStateList.valueOf(Color.parseColor(color)));
+        progressRSRP.setProgress(Math.abs((int) result));
+        txt_RSRP.setText(result + "");
+    }
+
+    private void updateSIN(double result, String color) {
+        progressSNR.setProgressTintList(ColorStateList.valueOf(Color.parseColor(color)));
+        progressSNR.setProgress(Math.abs((int) result));
+        txt_SNR.setText(result + "");
+    }
+
+    private void updateRSRQ(double result, String color) {
+        progressRSRQ.setProgressTintList(ColorStateList.valueOf(Color.parseColor(color)));
+        progressRSRQ.setProgress(Math.abs((int) result));
+        txt_RSRQ.setText(result + "");
+    }
+
+
+    private void loadLegendFile() {
+        legendile = Helper.loadJSONFromAsset(getApplicationContext(), "Legend.json");
 
     }
 
@@ -207,7 +399,11 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(RandomTestModel randomTestModel) {
 
 
-                updateProgressBar(randomTestModel);
+                try {
+                    updateProgressBar(randomTestModel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
                 Graph_ListRSRP(randomTestModel);
@@ -221,25 +417,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void updateProgressBar(RandomTestModel randomTestModel) {
+    private void updateProgressBar(RandomTestModel randomTestModel) throws JSONException {
 
         double num = randomTestModel.getRSRP();
         if (num != 0) {
-            progressRSRP.setProgress(Math.abs((int) num));
-            txt_RSRP.setText(num + "");
+
+            checkColorRSRP(num);
+
+
         }
 
 
         num = randomTestModel.getRSRQ();
         if (num != 0) {
-            progressRSRQ.setProgress(Math.abs((int) num));
-            txt_RSRQ.setText(num + "");
+
+            checkColorRSRQ(num);
+
         }
 
         num = randomTestModel.getSINR();
         if (num != 0) {
-            progressSNR.setProgress(Math.abs((int) num));
-            txt_SNR.setText(num + "");
+            checkColorSNR(num);
         }
     }
 

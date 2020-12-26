@@ -9,7 +9,10 @@ import com.example.mocktestbyprogramerezzat.data.repo.RandomTestRepo;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainViewModel extends ViewModel {
@@ -30,6 +33,32 @@ public class MainViewModel extends ViewModel {
         Observable.interval(2, TimeUnit.SECONDS, Schedulers.io())
                 .map(res -> randomTestRepo.getRandomApi())
                 .observeOn(Schedulers.newThread())
-                .subscribe(api -> api.subscribe(result -> modelMutableLiveData.postValue(result)));
+                .subscribe(api -> api.subscribe(new Observer<RandomTestModel>() {
+                            @Override
+                            public void onSubscribe(@NonNull Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(@NonNull RandomTestModel randomTestModel) {
+                                if (randomTestModel!=null)
+                                {
+                                    modelMutableLiveData.postValue(randomTestModel);
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        }
+                ));
     }
 }
